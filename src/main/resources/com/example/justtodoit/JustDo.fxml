@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,12 +12,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.justtodoit.JustDoItController">
+<VBox alignment="CENTER" prefHeight="471.0" prefWidth="600.0" spacing="20.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.justtodoit.JustDoItController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <Pane prefHeight="393.0" prefWidth="560.0" styleClass="pane" stylesheets="@style.css">
+      <Pane fx:id="pane" prefHeight="470.0" prefWidth="560.0" styleClass="pane" stylesheets="@style.css">
          <children>
             <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Just Do It" wrappingWidth="55.51171851158142">
                <font>
@@ -50,19 +51,16 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="addBtn" layoutX="28.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add task" />
-            <Button fx:id="clearBtn" layoutX="97.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleClearButton" text="Clear All" />
-            <VBox fx:id="tasksContainer" layoutX="27.0" layoutY="244.0" prefHeight="64.0" prefWidth="529.0">
-               <children>
-                  <Label fx:id="tasksLabel" prefHeight="17.0" prefWidth="143.0" stylesheets="@style.css" text="Enter Task" />
-               </children>
-            </VBox>
+            <Button fx:id="addBtn" layoutX="385.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add task" />
+            <Button fx:id="clearBtn" layoutX="450.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleClearButton" text="Clear All" />
+            <VBox fx:id="tasksContainer" layoutX="27.0" layoutY="232.0" prefWidth="529.0" />
             <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="70.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/Images/icon.gif" />
                </image>
             </ImageView>
             <Label fx:id="index" layoutX="75.0" layoutY="246.0" />
+            <TextField fx:id="taskField" layoutX="26.0" layoutY="392.0" prefHeight="25.0" prefWidth="355.0" promptText="Enter task " />
          </children>
       </Pane>
    </children>

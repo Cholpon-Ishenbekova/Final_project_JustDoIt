@@ -12,7 +12,7 @@ public class JustDoIt extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(JustDoIt.class.getResource("JustDo.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 560, 393);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 471);
         JustDoItController controller = new JustDoItController();
         fxmlLoader.setController(controller);
         stage.setTitle("Just Do It");

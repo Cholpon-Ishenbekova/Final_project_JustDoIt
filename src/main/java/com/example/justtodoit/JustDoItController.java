@@ -1,22 +1,26 @@
 package com.example.justtodoit;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.collections.ObservableList;
+
 
 public class JustDoItController {
 
@@ -27,33 +31,16 @@ public class JustDoItController {
     private Button clearBtn;
 
     @FXML
-    private ImageView doneBtn;
-
-    @FXML
-    private ImageView removeBtn;
-
-    @FXML
-    private Button resetBtn;
-
-    @FXML
     private Button startBtn;
 
     @FXML
-    private Label tasksLabel;
-
-    @FXML
-    private Label index;
+    private TextField taskField;
 
     @FXML
     private Label time1;
 
     @FXML
-    private Label time2;
-    @FXML
-    private Button pomoBtn;
-
-    @FXML
-    private Button breakBtn;
+    private Pane pane;
 
 
     private List<Task> taskList = new ArrayList<Task>();
@@ -152,96 +139,22 @@ public class JustDoItController {
 
     @FXML
     private void handleAddButton(ActionEvent event) {
-        Task newTask = createTask();
-        taskList.add(newTask);
-        tasksContainer.getChildren().add(newTask.getTaskPane());
+        String task = taskField.getText();
+        Label newTaskLabel = new Label();
+        newTaskLabel.textProperty().bind(Bindings.concat((tasksContainer.getChildren().size() + 1), ". ", task));
+        newTaskLabel.setStyle("-fx-padding: 5px 0;");
+        tasksContainer.getChildren().add(newTaskLabel);
+        taskField.clear();
+        tasksContainer.setPrefHeight(tasksContainer.getPrefHeight() + newTaskLabel.getBoundsInLocal().getHeight() + 10);
     }
 
     @FXML
     private void handleClearButton(ActionEvent event) {
-        taskList.clear();
         tasksContainer.getChildren().clear();
+        tasksContainer.setPrefHeight(148);
     }
 
-    private Task createTask() {
-        Label taskLabel = new Label("Enter Task");
-        ImageView doneButton = new ImageView(new Image("/Images/check-mark-button_2705.png"));
-        ImageView removeButton = new ImageView(new Image("/Images/cross-mark_274c.png"));
-
-        doneButton.setOnMouseClicked(event -> markTaskAsDone(doneButton));
-        removeButton.setOnMouseClicked(event -> removeTask(removeButton));
-
-        return new Task(taskLabel, doneButton, removeButton);
-    }
-
-    private void markTaskAsDone(ImageView doneButton) {
-        Label taskLabel = (Label) doneButton.getUserData();
-        taskLabel.getStyleClass().add("task-done");
-    }
-
-    private void removeTask(ImageView removeButton) {
-        VBox taskPane = (VBox) removeButton.getUserData();
-        tasksContainer.getChildren().remove(taskPane);
-
-        // Remove the task from the taskList if needed
-        for (Task task : taskList) {
-            if (task.getTaskPane() == taskPane) {
-                taskList.remove(task);
-                break;
-            }
-        }
-    }
-
-    public static class Task {
-        private Label taskLabel;
-        private ImageView doneButton;
-        private ImageView removeButton;
-        private VBox taskPane;
 
 
-        public Task(Label taskLabel, ImageView doneButton, ImageView removeButton) {
-            this.taskLabel = taskLabel;
-            this.doneButton = doneButton;
-            this.removeButton = removeButton;
-
-            initializeTaskPane();
-        }
-
-        private void initializeTaskPane() {
-            VBox taskPane;
-            taskPane = new VBox(5);
-            taskPane.getChildren().addAll(taskLabel, doneButton, removeButton);
-            taskPane.getStyleClass().add("task-pane");
-
-            // Store references to the label and buttons in the user data
-            doneButton.setUserData(taskLabel);
-            removeButton.setUserData(taskPane);
-        }
-
-        public VBox getTaskPane() {
-            return taskPane;
-        }
-
-    }
-
-//    public Button getAddBtn() {
-//        return addBtn;
-//    }
-
-
-//    public Button getClearBtn() {
-//        return clearBtn;
-//    }
-//
-//    public void addListiner(){
-//        addBtn.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                Task task = new Task();
-//                listTasks.add(tasksLabel);
-//
-//            }
-//        });
-//    }
 }
 

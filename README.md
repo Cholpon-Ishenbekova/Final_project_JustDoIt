@@ -8,9 +8,9 @@ The project consists of three main files
 
 Also style.css for styling app
 
-The problem that I wanted to solve with my app: The problem was my procrastination of doing this final project. That why I decided to make such as app that helps me to focud and complete final project. 
+The problem that I wanted to solve with my app: The problem was my procrastination of doing this final project. That why I decided to make such a program that helps me to focus and complete final project. 
 
-The description: JustDoIt project is using pomodoro method help user to focus and to have done tasks that user created. Timer with two buttons like Start and Reset, user can start the timer (25 min) and stop according to user preference. Also, user can reset the timer and start from the begining. 
+The description: JustDoIt project using pomodoro method helps user to focus and to have done tasks that user created. Timer with two buttons like Start and Reset, user can start the timer (25 min) and stop according to user preference. Also, user can reset the timer and start from the begining. 
 
 Tasks with Add button can be added by order and also with Clear All button user can clean all tasks. 
 

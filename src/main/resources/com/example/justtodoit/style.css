@@ -5,9 +5,18 @@
 .time {
     -fx-background-color: rgba(176, 171, 171, 0.22);
 }
+
 .pane {
     -fx-background-color: rgba(176, 171, 171, 0.1);
 }
-.task {
-    -fx-underline: true;
+
+.task-pane {
+    -fx-spacing: 5;
+    -fx-padding: 5;
 }
+
+.task-done {
+    -fx-strikethrough: true;
+}
+
+

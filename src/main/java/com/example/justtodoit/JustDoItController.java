@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,11 @@ public class JustDoItController {
     @FXML
     private Button breakBtn;
 
+
     private List<Task> taskList = new ArrayList<Task>();
+
+    @FXML
+    private VBox tasksContainer;
 
 
     private int sessionTime = 1500;
@@ -147,30 +152,76 @@ public class JustDoItController {
 
     @FXML
     private void handleAddButton(ActionEvent event) {
-        String newTask = tasksLabel.getText();
-        ImageView doneImage = new ImageView(doneBtn.getImage());
-        ImageView removeImage = new ImageView(removeBtn.getImage());
-        Task newTaskObject = new Task(newTask, doneImage, removeImage);
-        taskList.add(newTaskObject);
+        Task newTask = createTask();
+        taskList.add(newTask);
+        tasksContainer.getChildren().add(newTask.getTaskPane());
     }
 
     @FXML
     private void handleClearButton(ActionEvent event) {
         taskList.clear();
+        tasksContainer.getChildren().clear();
+    }
+
+    private Task createTask() {
+        Label taskLabel = new Label("Enter Task");
+        ImageView doneButton = new ImageView(new Image("/Images/check-mark-button_2705.png"));
+        ImageView removeButton = new ImageView(new Image("/Images/cross-mark_274c.png"));
+
+        doneButton.setOnMouseClicked(event -> markTaskAsDone(doneButton));
+        removeButton.setOnMouseClicked(event -> removeTask(removeButton));
+
+        return new Task(taskLabel, doneButton, removeButton);
+    }
+
+    private void markTaskAsDone(ImageView doneButton) {
+        Label taskLabel = (Label) doneButton.getUserData();
+        taskLabel.getStyleClass().add("task-done");
+    }
+
+    private void removeTask(ImageView removeButton) {
+        VBox taskPane = (VBox) removeButton.getUserData();
+        tasksContainer.getChildren().remove(taskPane);
+
+        // Remove the task from the taskList if needed
+        for (Task task : taskList) {
+            if (task.getTaskPane() == taskPane) {
+                taskList.remove(task);
+                break;
+            }
+        }
     }
 
     public static class Task {
-        private String taskLabel;
+        private Label taskLabel;
         private ImageView doneButton;
         private ImageView removeButton;
+        private VBox taskPane;
 
-        public Task(String taskLabel, ImageView doneButton, ImageView removeButton) {
+
+        public Task(Label taskLabel, ImageView doneButton, ImageView removeButton) {
             this.taskLabel = taskLabel;
             this.doneButton = doneButton;
             this.removeButton = removeButton;
+
+            initializeTaskPane();
         }
 
-        // Getter methods for taskLabel, doneButton, removeButton
+        private void initializeTaskPane() {
+            VBox taskPane;
+            taskPane = new VBox(5);
+            taskPane.getChildren().addAll(taskLabel, doneButton, removeButton);
+            taskPane.getStyleClass().add("task-pane");
+
+            // Store references to the label and buttons in the user data
+            doneButton.setUserData(taskLabel);
+            removeButton.setUserData(taskPane);
+        }
+
+        public VBox getTaskPane() {
+            return taskPane;
+        }
+
     }
 
 //    public Button getAddBtn() {

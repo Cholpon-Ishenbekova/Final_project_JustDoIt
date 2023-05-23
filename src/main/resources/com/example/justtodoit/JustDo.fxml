@@ -50,24 +50,25 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="addBtn" layoutX="28.0" layoutY="314.0" mnemonicParsing="false" text="Add task" />
+            <Button fx:id="addBtn" layoutX="28.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add task" />
             <Button fx:id="clearBtn" layoutX="97.0" layoutY="314.0" mnemonicParsing="false" text="Clear All" />
-            <Label fx:id="tasksLabel" layoutX="80.0" layoutY="246.0" prefHeight="17.0" prefWidth="143.0" stylesheets="@style.css" text="1. Do final project (JAVA)" />
             <ImageView fx:id="doneBtn" fitHeight="25.0" fitWidth="20.0" layoutX="21.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/Images/check-mark-button_2705.png" />
+                  <Image url="@../../../../../Images/check-mark-button_2705.png" />
                </image>
             </ImageView>
             <ImageView fx:id="removeBtn" fitHeight="21.0" fitWidth="20.0" layoutX="49.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/Images/cross-mark_274c.png" />
+                  <Image url="@../../../../../Images/cross-mark_274c.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="70.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/Images/icon.gif" />
+                  <Image url="@../../../../../Images/icon.gif" />
                </image>
             </ImageView>
+            <Label fx:id="index" layoutX="75.0" layoutY="246.0" />
+            <Label fx:id="tasksLabel" layoutX="90.0" layoutY="246.0" prefHeight="17.0" prefWidth="143.0" stylesheets="@style.css" text="Enter Task" />
          </children>
       </Pane>
    </children>

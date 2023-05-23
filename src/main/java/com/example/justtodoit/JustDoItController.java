@@ -1,23 +1,21 @@
 package com.example.justtodoit;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
 
-import java.util.EventListener;
-import java.util.Timer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JustDoItController {
 
@@ -43,6 +41,9 @@ public class JustDoItController {
     private Label tasksLabel;
 
     @FXML
+    private Label index;
+
+    @FXML
     private Label time1;
 
     @FXML
@@ -53,10 +54,14 @@ public class JustDoItController {
     @FXML
     private Button breakBtn;
 
+    private List<Task> taskList = new ArrayList<Task>();
+
+
     private int sessionTime = 1500;
     private int elapsedSeconds = sessionTime;
     private Timeline timer;
     private boolean startClicked = false;
+
 
     public void initialize() {
         updateTimeLabel();
@@ -140,6 +145,52 @@ public class JustDoItController {
         alert1.showAndWait();
     }
 
+    @FXML
+    private void handleAddButton(ActionEvent event) {
+        String newTask = tasksLabel.getText();
+        ImageView doneImage = new ImageView(doneBtn.getImage());
+        ImageView removeImage = new ImageView(removeBtn.getImage());
+        Task newTaskObject = new Task(newTask, doneImage, removeImage);
+        taskList.add(newTaskObject);
+    }
 
+    @FXML
+    private void handleClearButton(ActionEvent event) {
+        taskList.clear();
+    }
+
+    public static class Task {
+        private String taskLabel;
+        private ImageView doneButton;
+        private ImageView removeButton;
+
+        public Task(String taskLabel, ImageView doneButton, ImageView removeButton) {
+            this.taskLabel = taskLabel;
+            this.doneButton = doneButton;
+            this.removeButton = removeButton;
+        }
+
+        // Getter methods for taskLabel, doneButton, removeButton
+    }
+
+//    public Button getAddBtn() {
+//        return addBtn;
+//    }
+
+
+//    public Button getClearBtn() {
+//        return clearBtn;
+//    }
+//
+//    public void addListiner(){
+//        addBtn.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                Task task = new Task();
+//                listTasks.add(tasksLabel);
+//
+//            }
+//        });
+//    }
 }
 

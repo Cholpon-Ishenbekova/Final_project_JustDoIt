@@ -18,7 +18,7 @@ Further improvement of project:
 1. To add Done and Delete buttons to each task 
 2. With mysql database create login and sign up sections
 
-Problems that I could solve: 
+Problems that I could not solve: 
 1. I really wanted to create login and sign up, but I had problem with connection to mysql. I spent for this 4 days, but still couldn't manage it 
 2. I had bug with adding two buttons Done and Delete to each function (I spent 2 days, but still couldn't debug, that why it's without those functions)
 

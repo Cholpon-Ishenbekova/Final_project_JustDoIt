@@ -1,6 +1,8 @@
 # Final_project_JustDoIt
 This is my final project  "Just to Do It"
 
+Video link: https://youtu.be/G-ZV94ZJCsI 
+
 The project consists of three main files 
 -JustDoIt
 -JustDoItController

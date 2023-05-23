@@ -1,0 +1,13 @@
+.background {
+    -fx-background-color: #94bbe9;
+}
+
+.time {
+    -fx-background-color: rgba(176, 171, 171, 0.22);
+}
+.pane {
+    -fx-background-color: rgba(176, 171, 171, 0.1);
+}
+.task {
+    -fx-underline: true;
+}
